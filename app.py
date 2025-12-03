@@ -1,11 +1,24 @@
 import os
-import requests
-from flask import Flask, render_template, request, url_for  # ✅ ajouter request + url_for
+import google.generativeai as genai
+from flask import Flask, render_template, request, url_for
 from dotenv import load_dotenv
 
+# Charger les variables d’environnement
 load_dotenv()
 
-OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY", "")  # ✅ nom unique et cohérent
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
+GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
+
+# Configuration Gemini
+if GEMINI_API_KEY:
+    genai.configure(api_key=GEMINI_API_KEY)
+    # Modèle principal
+    model = genai.GenerativeModel(GEMINI_MODEL)
+    # Option : chat persistant (si un jour tu veux garder un historique global)
+    chat = model.start_chat(history=[])
+else:
+    model = None
+    chat = None
 
 app = Flask(__name__)
 
@@ -29,50 +42,39 @@ def collectivites():
 def assistant():
     return render_template("assistant.html", active="assistant")
 
-def call_openrouter(prompt: str) -> str:
-    if not OPENROUTER_API_KEY:
-        return "Erreur configuration : OPENROUTER_API_KEY est manquante côté serveur."
 
-    url = "https://openrouter.ai/api/v1/chat/completions"
-    headers = {
-        "Authorization": f"Bearer {OPENROUTER_API_KEY}",
-        "Content-Type": "application/json",
-        # Optionnels mais utiles:
-        # "HTTP-Referer": "http://localhost:5000",
-        # "X-Title": "NIRD Campus",
-    }
-
-    payload = {
-        "model": "google/gemma-3n-e4b-it:free",
-        "messages": [{"role": "user", "content": prompt}],
-        "temperature": 0.3,
-        "max_tokens": 900,
-    }
+def call_gemini(prompt: str) -> str:
+    """
+    Appel à Gemini via la lib officielle google.generativeai,
+    en s’inspirant de ta logique avec start_chat + stream.
+    On consomme le stream pour retourner une seule string.
+    """
+    if not GEMINI_API_KEY or model is None:
+        return "Erreur configuration : GEMINI_API_KEY est manquante ou invalide côté serveur."
 
     try:
-        r = requests.post(url, headers=headers, json=payload, timeout=30)
-        if r.status_code != 200:
-            return f"Erreur IA (HTTP {r.status_code}). Détails: {r.text[:300]}"
+        # Variante “chat” + stream (comme ton exemple)
+        # Si tu ne veux pas de contexte global, on pourrait aussi faire :
+        #   response = model.generate_content(prompt)
+        #   return (response.text or '').strip()
+        stream = chat.send_message(prompt, stream=True)
 
-        data = r.json()
-        choices = data.get("choices", [])
-        if not choices:
-            return "Réponse vide de l’IA (aucun choix retourné)."
+        chunks = []
+        for chunk in stream:
+            # Selon la lib, chunk.text contient le texte incrémental
+            if hasattr(chunk, "text") and chunk.text:
+                chunks.append(chunk.text)
 
-        message = choices[0].get("message") or {}
-        content = message.get("content")
+        full_text = "".join(chunks).strip()
+        if not full_text:
+            return "Réponse vide de l’IA (aucun texte reçu)."
 
-        if isinstance(content, str) and content.strip():
-            return content.strip()
+        return full_text
 
-        return "Réponse vide de l’IA (contenu absent)."
+    except Exception as e:
+        # Tu peux logger e côté serveur si tu veux plus de détails
+        return f"Une erreur s’est produite côté IA : {e}"
 
-    except requests.exceptions.Timeout:
-        return "La requête IA a expiré (timeout). Veuillez réessayer."
-    except requests.exceptions.RequestException:
-        return "Erreur de connexion au service IA. Vérifiez votre réseau."
-    except Exception:
-        return "Une erreur inattendue s’est produite côté IA."
 
 @app.post("/assistant")
 def assistant_submit():
@@ -117,7 +119,7 @@ Format obligatoire du rapport :
 5) Prochaine action recommandée (une seule, très concrète)
 """.strip()
 
-    result = call_openrouter(prompt)
+    result = call_gemini(prompt)
 
     return render_template(
         "assistant_result.html",
@@ -125,6 +127,7 @@ Format obligatoire du rapport :
         result=result,
         back_url=url_for("assistant")
     )
+
 
 @app.errorhandler(404)
 def not_found(_):
@@ -139,6 +142,7 @@ def not_found(_):
 <p><a href="/">Retour à l’accueil</a></p>
 """
     ), 404
+
 
 if __name__ == "__main__":
     app.run(debug=True)
