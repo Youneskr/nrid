@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block title %}NIRD Campus — Assistant IA{% endblock %}
+{% block description %}Générer un rapport personnalisé (plan NIRD + checklist) à partir de votre contexte.{% endblock %}
+
+{% block content %}
+<h1>Assistant IA — Rapport personnalisé</h1>
+
+<p>
+  Décrivez votre contexte : vous recevrez un <strong>rapport structuré</strong> généré par un assistant IA, incluant
+  un <strong>plan d’action NIRD</strong> (en jalons) et une <strong>checklist</strong> de mise en œuvre.
+</p>
+
+<pre>
+Le rapport contient :
+- Une synthèse de votre situation
+- Un plan d’action par étapes (jalons)
+- Une checklist opérationnelle
+- Des risques et recommandations
+</pre>
+
+<form method="post" action="{{ url_for('assistant_submit') }}">
+  <p>
+    <label for="etab_type"><strong>Type d’établissement</strong></label><br>
+    <select id="etab_type" name="etab_type" required>
+      <option value="">-- Choisir --</option>
+      <option>École</option>
+      <option>Collège</option>
+      <option>Lycée</option>
+      <option>Autre</option>
+    </select>
+  </p>
+
+  <p>
+    <label for="parc"><strong>Parc / matériel (résumé)</strong></label><br>
+    <textarea id="parc" name="parc" rows="4" cols="60" required
+      placeholder="Ex : 25 postes, 10 PC anciens, 1 salle info, maintenance internalisée/externalisée..."></textarea>
+  </p>
+
+  <p>
+    <label for="reseau"><strong>Réseau / contraintes techniques</strong></label><br>
+    <textarea id="reseau" name="reseau" rows="4" cols="60"
+      placeholder="Ex : proxy/filtrage, comptes, impression, Wi-Fi, restrictions d’installation, support..."></textarea>
+  </p>
+
+  <p>
+    <label for="objectif"><strong>Objectif principal</strong></label><br>
+    <textarea id="objectif" name="objectif" rows="3" cols="60" required
+      placeholder="Ex : démarrer un pilote Linux, lancer un club de reconditionnement, réduire les coûts, améliorer l’accessibilité..."></textarea>
+  </p>
+
+  <p>
+    <label for="contraintes"><strong>Contraintes et exigences</strong></label><br>
+    <textarea id="contraintes" name="contraintes" rows="3" cols="60"
+      placeholder="Ex : calendrier, budget, ressources humaines, exigences de sécurité, attentes des parties prenantes..."></textarea>
+  </p>
+
+  <p>
+    <label for="autres"><strong>Autres informations (libre)</strong></label><br>
+    <textarea id="autres" name="autres" rows="4" cols="60"
+      placeholder="Ajoutez tout élément utile : partenaires, contexte social, priorités pédagogiques, incidents passés, besoins spécifiques, etc."></textarea>
+  </p>
+
+  <p>
+    <button class="media-link" type="submit">Générer le rapport</button>
+  </p>
+</form>
+
+<div class="info">
+  <strong>Conseil :</strong> plus votre description est précise, plus le rapport sera actionnable (plan, jalons, checklist).
+</div>
+{% endblock %}

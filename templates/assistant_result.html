@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}NIRD Campus — Rapport généré{% endblock %}
+{% block description %}Rapport généré à partir des informations fournies.{% endblock %}
+
+{% block content %}
+<h1>Rapport généré</h1>
+
+<p>
+  Voici un rapport structuré généré à partir des informations que vous avez fournies.
+  Vous pouvez l’utiliser comme base de cadrage (plan d’action, jalons, checklist).
+</p>
+
+<ul class="nav-list" style="margin:0">
+  <li><a href="{{ back_url }}">Retour au formulaire</a></li>
+  <li><a href="{{ url_for('index') }}">Retour à l’accueil</a></li>
+</ul>
+
+<p style="margin-top:1rem">
+  <button class="media-link" type="button" onclick="window.print()">
+    Imprimer / enregistrer en PDF
+  </button>
+</p>
+
+<hr>
+
+<h2>Contenu du rapport</h2>
+<pre>{{ result }}</pre>
+
+<div class="info">
+  <strong>Suggestion :</strong> copiez/collez ce rapport dans votre documentation interne et transformez la checklist en tâches (tickets).
+</div>
+
+<div class="warning">
+  <strong>Note :</strong> ce rapport est généré automatiquement. Pour les décisions techniques, validez avec l’équipe projet
+  (direction, référent numérique, collectivité, support).
+</div>
+{% endblock %}

@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% block title %}NIRD Campus — Reconditionnement{% endblock %}
+{% block description %}Pourquoi le reconditionnement par les élèves est central : inclusion, responsabilité, durabilité.{% endblock %}
+
+{% block content %}
+<h1>Reconditionnement (par les élèves)</h1>
+<p>
+  Le reconditionnement, et en particulier les projets menés avec les élèves, constitue une action “pivot” pour NIRD :
+  <strong>inclusion</strong>, <strong>responsabilité</strong> et <strong>durabilité</strong>.
+</p>
+
+<pre>
+Infos pratiques
+- Lecture : ~4 minutes
+- Photo : optionnelle (chargée uniquement sur clic)
+- Navigation : Tab / Shift+Tab + Alt+1..4 (selon navigateur)
+</pre>
+
+<h2>Sommaire</h2>
+<ul class="nav-list">
+  <li><a href="#definition">Définition</a></li>
+  <li><a href="#pourquoi">Pourquoi c’est central</a></li>
+  <li><a href="#media">Photo (optionnelle)</a></li>
+  <li><a href="#limites">Limites (ceci n’est pas un tutoriel)</a></li>
+</ul>
+
+<hr>
+
+<h2 id="definition">Définition</h2>
+<p>
+  Le <strong>reconditionnement</strong> consiste à remettre en état des ordinateurs non neufs pour leur donner une seconde vie,
+  en garantissant leur fonctionnement et leur adéquation aux besoins.
+</p>
+<ul>
+  <li>Collecter des machines (selon cadre local).</li>
+  <li><strong>Effacer les données</strong> (confidentialité/conformité).</li>
+  <li>Nettoyer, diagnostiquer, réparer ; remplacer si nécessaire.</li>
+  <li>Réinstaller un système (ex. <strong>Linux</strong>) et un socle logiciel.</li>
+</ul>
+
+<blockquote>Le reconditionnement sous Linux combine réemploi matériel et autonomie logicielle.</blockquote>
+
+<hr>
+
+<h2 id="pourquoi">Pourquoi c’est central</h2>
+<ul>
+  <li><strong>Inclusif</strong> : apprentissage par la pratique, rôles variés, valorisation, réduction des inégalités.</li>
+  <li><strong>Responsable</strong> : protection des données, organisation, esprit critique, coopération.</li>
+  <li><strong>Durable</strong> : durée de vie prolongée, déchets réduits, sobriété numérique concrète.</li>
+</ul>
+
+<div class="success">
+  <strong>À retenir :</strong> un projet de reconditionnement bien encadré relie pédagogie, écologie et inclusion.
+</div>
+
+<hr>
+
+<h2 id="media">Photo (optionnelle)</h2>
+<p>Cette illustration regroupe deux scènes (réception + livraison). Chargement sur clic uniquement.</p>
+
+<button class="media-link" type="button"
+  data-target="img-collage"
+  data-src="{{ url_for('static', filename='media/reconditionnement-collage.jpg') }}">
+  [MEDIA] Charger la photo (JPG, 320 KB)
+</button>
+
+<div id="img-collage" class="media-container" aria-live="polite">
+  <img alt="Montage photo : réception de PC à reconditionner et livraison à vélo de PC PrimTux reconditionnés.">
+  <p>Légende : Montage — réception de PC à reconditionner et livraison à vélo de PC reconditionnés vers une école.</p>
+  <p class="warning media-error" style="display:none;"></p>
+</div>
+
+<noscript>
+  <div class="warning">
+    <strong>⚠</strong> JavaScript désactivé :
+    <a href="{{ url_for('static', filename='media/reconditionnement-collage.jpg') }}">ouvrir la photo (JPG, 320 KB)</a>.
+  </div>
+</noscript>
+
+<hr>
+
+<h2 id="limites">Limites</h2>
+<div class="warning">
+  <strong>Cette page n’est pas un tutoriel.</strong>
+  Elle ne détaille pas encore : procédures d’effacement, outillage, checklists techniques, traçabilité, sécurité, etc.
+</div>
+{% endblock %}

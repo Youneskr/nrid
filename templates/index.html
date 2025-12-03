@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}NIRD Campus — Accueil{% endblock %}
+{% block description %}Guide opérationnel NIRD : démarche en jalons, reconditionnement, rôle des collectivités.{% endblock %}
+
+{% block content %}
+<h1>Accueil</h1>
+<p>
+  Ressource synthétique pour accompagner les établissements scolaires dans le déploiement d’un numérique
+  <strong>inclusif</strong>, <strong>responsable</strong> et <strong>durable</strong>, avec une progression par étapes et des actions concrètes.
+</p>
+
+<div class="info">
+  <strong>Principes :</strong><br>
+  • Lecture rapide (texte prioritaire)<br>
+  • Médias optionnels (chargés à la demande)<br>
+  • Accessibilité : clavier, focus visible, structure simple
+</div>
+
+<hr>
+
+<h2>Pages du guide</h2>
+<ul class="nav-list">
+  <li><a href="{{ url_for('demarche') }}">Démarche NIRD — feuille de route en 3 jalons</a></li>
+  <li><a href="{{ url_for('reconditionnement') }}">Reconditionnement — pourquoi c’est central (inclusion / responsabilité / durabilité)</a></li>
+  <li><a href="{{ url_for('collectivites') }}">Collectivités — bénéfices et leviers d’action</a></li>
+</ul>
+
+<h2>Historique</h2>
+<pre>
+2025-12-03  v1.0  Publication du guide (pages + navigation clavier + médias optionnels)
+</pre>
+
+<div class="warning">
+  <strong>Transparence :</strong> les médias ne se chargent jamais automatiquement. Leur taille est indiquée avant téléchargement.
+</div>
+{% endblock %}

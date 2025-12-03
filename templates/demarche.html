@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+{% block title %}NIRD Campus — Démarche en 3 jalons{% endblock %}
+{% block description %}Mobilisation, expérimentation, intégration : feuille de route NIRD.{% endblock %}
+
+{% block content %}
+<h1>Démarche NIRD — 3 jalons</h1>
+<p>
+  Feuille de route recommandée pour déployer NIRD dans un établissement :
+  <strong>Mobilisation</strong>, <strong>Expérimentation</strong>, puis <strong>Intégration</strong>.
+</p>
+
+<pre>
+Infos pratiques
+- Lecture : ~3 minutes
+- Photo : optionnelle (chargée uniquement sur clic)
+- Navigation : Tab / Shift+Tab + Alt+1..4 (selon navigateur)
+</pre>
+
+<h2>Sommaire</h2>
+<ul class="nav-list">
+  <li><a href="#tldr">Résumé</a></li>
+  <li><a href="#jalons">Les 3 jalons</a></li>
+  <li><a href="#media">Photo (optionnelle)</a></li>
+  <li><a href="#accessibilite">Accessibilité & transparence</a></li>
+</ul>
+
+<hr>
+
+<h2 id="tldr">Résumé</h2>
+<pre>
+Jalon 1 — Mobilisation : lancer la dynamique (contact, sensibilisation, réseau, direction, collectivité)
+Jalon 2 — Expérimentation : tester (Linux, réemploi, formation, retours, compatibilité technique)
+Jalon 3 — Intégration : stabiliser (parc, projet d’établissement, gouvernance, coopération collectivité)
+</pre>
+
+<blockquote>“Commencer petit, apprendre, puis inscrire dans la durée.”</blockquote>
+
+<hr>
+
+<h2 id="jalons">Les 3 jalons</h2>
+
+<h3 id="jalon1">Jalon 1 — Mobilisation</h3>
+<p><strong>Objectif :</strong> sensibiliser l’établissement et initier une dynamique collective.</p>
+<ul>
+  <li>Auto-désignation d’un enseignant volontaire : <strong>contact NIRD</strong>.</li>
+  <li>Temps d’information (équipe éducative, direction, personnels, éventuellement familles).</li>
+  <li>Mise en réseau (ressources, retours d’expérience, échanges).</li>
+  <li>Information de la direction et premier lien avec la collectivité.</li>
+</ul>
+
+<hr>
+
+<h3 id="jalon2">Jalon 2 — Expérimentation</h3>
+<p><strong>Objectif :</strong> tester des solutions concrètes, mesurer, ajuster.</p>
+<ul>
+  <li>Déployer quelques postes (neufs ou reconditionnés) sous Linux pour des usages pédagogiques.</li>
+  <li>Collèges/lycées : club informatique (reconditionnement et appropriation encadrés).</li>
+  <li>Écoles : déploiement adapté au premier degré ; ateliers possibles selon contexte.</li>
+  <li>Formation et appropriation (enseignants + élèves), avec suivi des retours d’usage.</li>
+  <li>Le contact devient <strong>coordinateur NIRD</strong> (centralise les retours, accompagne).</li>
+  <li>Échanges avec la collectivité : réseau, compatibilité, contraintes techniques et logistique.</li>
+</ul>
+
+<div class="success">
+  <strong>À produire pendant le pilote :</strong> constats, points bloquants, recommandations, conditions de généralisation.
+</div>
+
+<ul class="nav-list" style="margin-top:0">
+  <li><a href="{{ url_for('reconditionnement') }}">Voir : reconditionnement par les élèves</a></li>
+  <li><a href="{{ url_for('collectivites') }}">Voir : rôle des collectivités</a></li>
+</ul>
+
+<hr>
+
+<h3 id="jalon3">Jalon 3 — Intégration</h3>
+<p><strong>Objectif :</strong> inscrire NIRD dans la durée (technique, organisation, gouvernance).</p>
+<ul>
+  <li>Intégration progressive au parc et interconnexion avec le réseau de la collectivité.</li>
+  <li>Inscription dans le projet d’établissement et passage en instances (gouvernance).</li>
+  <li>Valorisation : retours d’expérience, communication, partage de ressources.</li>
+  <li>Coopération structurée avec la collectivité : maintenance, sécurité, financement, continuité.</li>
+</ul>
+
+<hr>
+
+<h2 id="media">Photo (optionnelle)</h2>
+<p>La photo ne se charge que si vous cliquez. Taille annoncée à l’avance.</p>
+
+<button class="media-link" type="button"
+  data-target="img1"
+  data-src="{{ url_for('static', filename='media/lycee-carnot-reception-pc.jpg') }}">
+  [MEDIA] Charger la photo (JPG, 180 KB)
+</button>
+
+<div id="img1" class="media-container" aria-live="polite">
+  <img alt="Un élève réceptionne des ordinateurs destinés à être reconditionnés sous Linux dans un atelier au sein d’un établissement.">
+  <p>Légende : Réception de PC destinés au reconditionnement sous Linux dans un atelier d’établissement.</p>
+  <p class="warning media-error" style="display:none;"></p>
+</div>
+
+<noscript>
+  <div class="warning">
+    <strong>⚠</strong> JavaScript désactivé :
+    <a href="{{ url_for('static', filename='media/lycee-carnot-reception-pc.jpg') }}">ouvrir la photo (JPG, 180 KB)</a>.
+  </div>
+</noscript>
+
+<hr>
+
+<h2 id="accessibilite">Accessibilité & transparence</h2>
+<div class="info">
+  <strong>Engagements :</strong><br>
+  • Navigation clavier + focus visible<br>
+  • Structure de titres stable (lecture rapide / lecteur d’écran)<br>
+  • Médias optionnels : aucun téléchargement automatique
+</div>
+
+<div class="warning">
+  <strong>Indicateurs (cibles) :</strong><br>
+  • Poids HTML+CSS : &lt; 50 KB<br>
+  • Requêtes au chargement : 1 (le document)<br>
+  • Requête média : 1 seulement si vous cliquez sur [MEDIA]
+</div>
+{% endblock %}

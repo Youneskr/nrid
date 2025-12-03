@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block title %}NIRD Campus — Collectivités{% endblock %}
+{% block description %}Pourquoi et comment les collectivités peuvent accompagner NIRD.{% endblock %}
+
+{% block content %}
+<h1>Collectivités</h1>
+<p>
+  Les collectivités (commune, département, région) sont déterminantes : elles assurent l’équipement,
+  l’infrastructure et la maintenance, et peuvent faciliter l’intégration de postes Linux.
+</p>
+
+<pre>
+Infos pratiques
+- Lecture : ~4 minutes
+- Photo : optionnelle (chargée uniquement sur clic)
+- Navigation : Tab / Shift+Tab + Alt+1..4 (selon navigateur)
+</pre>
+
+<h2>Sommaire</h2>
+<ul class="nav-list">
+  <li><a href="#gagner">Pourquoi s’engager</a></li>
+  <li><a href="#accompagner">Leviers d’action</a></li>
+  <li><a href="#media">Photo (optionnelle)</a></li>
+</ul>
+
+<hr>
+
+<h2 id="gagner">Pourquoi s’engager</h2>
+<ul>
+  <li><strong>Environnement</strong> : durée de vie prolongée, déchets réduits.</li>
+  <li><strong>Équité</strong> : réduire les fractures numériques.</li>
+  <li><strong>Éducation</strong> : projets citoyens (réemploi, données, compréhension).</li>
+  <li><strong>Sécurité & souveraineté</strong> : meilleure maîtrise des données, dépendances réduites.</li>
+  <li><strong>Coûts</strong> : licences et achats neufs réduits via logiciels libres et réemploi.</li>
+</ul>
+
+<div class="success">
+  <strong>À retenir :</strong> l’appui de la collectivité est souvent la condition pour passer d’un pilote à une intégration durable.
+</div>
+
+<hr>
+
+<h2 id="accompagner">Leviers d’action</h2>
+<ul>
+  <li><strong>Technique</strong> : réseau, identités, impression, sécurité, support.</li>
+  <li><strong>Logistique</strong> : transport, stockage, pièces, maintenance.</li>
+  <li><strong>Réseau d’acteurs</strong> : associations, ESS, entreprises locales, autres établissements.</li>
+  <li><strong>Compétences</strong> : formation des équipes (Linux, réemploi).</li>
+  <li><strong>Gouvernance</strong> : schémas directeurs, marchés publics, partenariats.</li>
+  <li><strong>Exemplarité</strong> : promouvoir logiciels libres et pratiques responsables.</li>
+</ul>
+
+<div class="info">
+  <strong>Point d’attention :</strong> anticiper l’intégration (réseau, identité, impression, support) réduit fortement les blocages.
+</div>
+
+<hr>
+
+<h2 id="media">Photo (optionnelle)</h2>
+<p>Chargement sur clic uniquement, taille annoncée à l’avance.</p>
+
+<button class="media-link" type="button"
+  data-target="img-don"
+  data-src="{{ url_for('static', filename='media/don-pc-club-info.jpg') }}">
+  [MEDIA] Charger la photo (JPG, 190 KB)
+</button>
+
+<div id="img-don" class="media-container" aria-live="polite">
+  <img alt="Don de PC reconditionné sous Linux au sein d’un club informatique d’établissement.">
+  <p>Légende : Don de PC reconditionnés sous Linux au sein du club-info d’un établissement scolaire.</p>
+  <p class="warning media-error" style="display:none;"></p>
+</div>
+
+<noscript>
+  <div class="warning">
+    <strong>⚠</strong> JavaScript désactivé :
+    <a href="{{ url_for('static', filename='media/don-pc-club-info.jpg') }}">ouvrir la photo (JPG, 190 KB)</a>.
+  </div>
+</noscript>
+{% endblock %}
