@@ -142,16 +142,54 @@
           <span class="brand-tagline">Guide opérationnel pour un numérique inclusif, responsable et durable</span>
         </h1>
 
-        <nav class="site-nav" aria-label="Navigation principale">
-          <ul class="nav-list">
-            <li><a href="{{ url_for('index') }}" accesskey="1" {% if active=="index" %}aria-current="page"{% endif %}>Accueil</a></li>
-            <li><a href="{{ url_for('demarche') }}" accesskey="2" {% if active=="demarche" %}aria-current="page"{% endif %}>Démarche</a></li>
-            <li><a href="{{ url_for('reconditionnement') }}" accesskey="3" {% if active=="reconditionnement" %}aria-current="page"{% endif %}>Reconditionnement</a></li>
-            <li><a href="{{ url_for('collectivites') }}" accesskey="4" {% if active=="collectivites" %}aria-current="page"{% endif %}>Collectivités</a></li>
-            <li><a href="{{ url_for('linux') }}" accesskey="4" {% if active=="linux" %}aria-current="page"{% endif %}>Linux</a></li>
-            <li><a href="{{ url_for('assistant') }}" accesskey="5" {% if active=="assistant" %}aria-current="page"{% endif %}>Assistant (IA)</a></li>
-          </ul>
-        </nav>
+<nav class="site-nav" aria-label="Navigation principale">
+  <ul class="nav-list">
+
+    <li>
+      <a href="{{ url_for('index') }}" accesskey="1"
+         {% if active=='index' %}aria-current="page"{% endif %}>
+        Accueil — Alt+1
+      </a>
+    </li>
+
+    <li>
+      <a href="{{ url_for('demarche') }}" accesskey="2"
+         {% if active=='demarche' %}aria-current="page"{% endif %}>
+        Démarche — Alt+2
+      </a>
+    </li>
+
+    <li>
+      <a href="{{ url_for('reconditionnement') }}" accesskey="3"
+         {% if active=='reconditionnement' %}aria-current="page"{% endif %}>
+        Reconditionnement — Alt+3
+      </a>
+    </li>
+
+    <li>
+      <a href="{{ url_for('collectivites') }}" accesskey="4"
+         {% if active=='collectivites' %}aria-current="page"{% endif %}>
+        Collectivités — Alt+4
+      </a>
+    </li>
+
+    <li>
+      <a href="{{ url_for('linux') }}" accesskey="5"
+         {% if active=='linux' %}aria-current="page"{% endif %}>
+        Linux — Alt+5
+      </a>
+    </li>
+
+    <li>
+      <a href="{{ url_for('assistant') }}" accesskey="6"
+         {% if active=='assistant' %}aria-current="page"{% endif %}>
+        Assistant IA — Alt+6
+      </a>
+    </li>
+
+  </ul>
+</nav>
+
       </header>
 
       <main id="contenu" role="main">
