@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% block title %}NIRD Campus — Pourquoi le choix Linux{% endblock %}
+{% block description %}Pourquoi et comment Linux est un choix inclusif, responsable et durable pour les établissements scolaires.{% endblock %}
+
+{% block content %}
+<h2>Pourquoi le choix Linux</h2>
+
+<p>
+  La démarche NIRD vise à promouvoir un numérique inclusif, responsable et durable dans les établissements scolaires. Le choix d’équiper progressivement les ordinateurs du parc, neufs ou reconditionnés, avec le système d’exploitation libre <strong>Linux</strong> (en lieu et place de systèmes d’exploitation propriétaires comme Windows) n’est pas seulement une alternative technique. C’est un choix structurant et transformant qui soutient pleinement les trois dimensions de la démarche.
+</p>
+
+<p>
+  Chaque machine sous Linux devient alors un outil pédagogique, éthique et écologique aligné avec les objectifs conjoints de l’Éducation nationale de sensibiliser au développement durable et de soutenir les communs numériques.
+</p>
+
+<hr>
+
+<h3>1. Un choix inclusif : un outil pédagogique accessible à tous</h3>
+<p>
+  Opter pour Linux permet de mettre à disposition des enseignants et des élèves un environnement numérique pensé pour l’apprentissage.
+</p>
+<ul>
+  <li><strong>Accessibilité universelle</strong> : Linux est libre et peut être installé sans licence payante. Cela permet d’équiper davantage d’élèves et de réduire les inégalités d’accès au numérique, que ce soit à l’école ou à la maison.</li>
+  <li><strong>Des interfaces adaptées</strong> : Des distributions Linux, comme <strong>PrimTux</strong> à l’école primaire, proposent des interfaces qui facilitent la différenciation pédagogique et permettent de respecter le rythme et le niveau de chaque élève.</li>
+  <li><strong>Un large choix de ressources éducatives libres</strong> : lecture, mathématiques, sciences, programmation, bureautique… les enseignants trouvent des outils variés (comme ceux de la forge des communs numériques éducatifs) pour enrichir leurs cours, sans coûts additionnels.</li>
+  <li><strong>Un fonctionnement simple et stable</strong> : même sur du matériel ancien, Linux démarre rapidement et reste fluide et fiable, réduisant les temps de panne et favorisant un usage serein en classe.</li>
+  <li><strong>Un support pour la pédagogie active</strong> : les élèves ne se contentent pas d’utiliser les logiciels, ils peuvent aussi découvrir le fonctionnement d’un système libre, comprendre les bases de l’informatique, et développer une culture et un esprit critique du numérique.</li>
+  <li><strong>Un levier d’inclusion</strong> : grâce aux outils disponibles (synthèse vocale, logiciels d’aide à la lecture ou à l’écriture), il est possible de mieux accompagner les élèves à besoins spécifiques.</li>
+</ul>
+<p>
+  Avec Linux, les enseignants disposent d’une boîte à outils pédagogique fiable, gratuite et adaptée à leurs pratiques, et les élèves bénéficient d’un accès équitable et stimulant au numérique, quelles que soient leurs conditions matérielles ou sociales.
+</p>
+
+<hr>
+
+<h3>2. Un choix responsable : maîtrise, éthique et souveraineté numérique</h3>
+<p>
+  Au-delà de l’aspect technique, Linux offre un cadre numérique plus sûr et plus transparent pour l’école.
+</p>
+<ul>
+  <li><strong>Respect des données personnelles</strong> : contrairement à certains systèmes propriétaires, Linux ne collecte pas d’informations à des fins commerciales. Les enseignants et les élèves évoluent dans un environnement protégé, en cohérence avec le RGPD.</li>
+  <li><strong>Maîtrise pédagogique</strong> : les enseignants peuvent adapter et personnaliser leur environnement numérique (installation de logiciels spécifiques, paramétrage de l’espace de travail) sans dépendre d’un fournisseur externe.</li>
+  <li><strong>Formation citoyenne</strong> : l’usage de logiciels libres familiarise les élèves avec une culture du partage et de la coopération, développant leur esprit critique face aux outils numériques.</li>
+  <li><strong>Souveraineté éducative</strong> : l’établissement garde le contrôle de ses choix technologiques et ne dépend pas de modèles économiques liés à des abonnements ou licences fermées.</li>
+</ul>
+<p>
+  Linux met l’école en cohérence avec sa mission : former des citoyens éclairés et autonomes dans un monde numérique.
+</p>
+
+<hr>
+
+<h3>3. Un choix durable : prolonger la vie des équipements et réduire l’empreinte écologique</h3>
+<p>
+  Linux est aussi un outil puissant pour répondre aux enjeux environnementaux et financiers des établissements.
+</p>
+<ul>
+  <li><strong>Optimisation du matériel existant</strong> : même des ordinateurs de plus de dix ans retrouvent une seconde vie grâce à Linux, ce qui évite des dépenses importantes pour les établissements et les collectivités.</li>
+  <li><strong>Réduction des déchets électroniques</strong> : chaque machine reconditionnée représente autant de matériel qui n’est pas jeté et racheté, contribuant à limiter l’impact écologique des équipements numériques.</li>
+  <li><strong>Pérennité</strong> : les distributions Linux ont des cycles de support longs et une communauté active garantissant une utilisation fiable sur plusieurs années sans changement de matériel imposé.</li>
+  <li><strong>Éducation à la sobriété numérique</strong> : en montrant aux élèves qu’un ordinateur ancien peut rester performant avec un système adapté, on transmet des valeurs de consommation responsable.</li>
+</ul>
+<p>
+  Avec Linux, l’établissement choisit une solution économique, écologique et éducative, en accord avec les objectifs de développement durable et la responsabilité environnementale.
+</p>
+
+<hr>
+
+<h2 id="media">Illustration</h2>
+<p>Reconditionnement simultané de plusieurs ordinateurs pour équiper une école en PrimTux.</p>
+
+<button class="media-link" type="button"
+  data-target="img-linux"
+  data-src="{{ url_for('static', filename='media/plusieurs-primtux.png') }}">
+  [MEDIA] Charger la photo
+</button>
+
+<div id="img-linux" class="media-container" aria-live="polite">
+  <img alt="Reconditionnement de plusieurs ordinateurs pour une école utilisant PrimTux, un système Linux adapté aux écoles primaires.">
+  <p>Légende : Reconditionnement simultané de plusieurs ordinateurs pour équiper une école en PrimTux.</p>
+  <p class="warning media-error" style="display:none;"></p>
+</div>
+
+<noscript>
+  <div class="warning">
+    <strong>⚠</strong> JavaScript désactivé :
+    <a href="{{ url_for('static', filename='media/plusieurs-primtux.png') }}">ouvrir la photo (JPG, 250 KB)</a>.
+  </div>
+</noscript>
+
+{% endblock %}

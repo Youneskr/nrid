@@ -3,18 +3,15 @@ import google.generativeai as genai
 from flask import Flask, render_template, request, url_for
 from dotenv import load_dotenv
 
-# Charger les variables d’environnement
+
 load_dotenv()
 
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
 GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
 
-# Configuration Gemini
 if GEMINI_API_KEY:
     genai.configure(api_key=GEMINI_API_KEY)
-    # Modèle principal
     model = genai.GenerativeModel(GEMINI_MODEL)
-    # Option : chat persistant (si un jour tu veux garder un historique global)
     chat = model.start_chat(history=[])
 else:
     model = None
@@ -38,6 +35,10 @@ def reconditionnement():
 def collectivites():
     return render_template("collectivites.html", active="collectivites")
 
+@app.get("/linux")
+def linux():
+    return render_template("linux.html", active="linux")
+
 @app.get("/assistant")
 def assistant():
     return render_template("assistant.html", active="assistant")
@@ -53,10 +54,6 @@ def call_gemini(prompt: str) -> str:
         return "Erreur configuration : GEMINI_API_KEY est manquante ou invalide côté serveur."
 
     try:
-        # Variante “chat” + stream (comme ton exemple)
-        # Si tu ne veux pas de contexte global, on pourrait aussi faire :
-        #   response = model.generate_content(prompt)
-        #   return (response.text or '').strip()
         stream = chat.send_message(prompt, stream=True)
 
         chunks = []
@@ -72,7 +69,6 @@ def call_gemini(prompt: str) -> str:
         return full_text
 
     except Exception as e:
-        # Tu peux logger e côté serveur si tu veux plus de détails
         return f"Une erreur s’est produite côté IA : {e}"
 
 
@@ -86,38 +82,36 @@ def assistant_submit():
     autres = request.form.get("autres", "").strip()
 
     prompt = f"""
-Tu es un assistant IA de NIRD Campus.
-Ta mission : produire un rapport professionnel, actionnable et structuré pour aider un établissement scolaire à déployer
-un numérique inclusif, responsable et durable (démarche NIRD) et à publier un site web sobre et accessible.
+    Tu es un assistant IA de NIRD Campus.
+    Produit un rapport très court, minimaliste, et directement actionnable.
+    Objectif : aider un établissement à démarrer la démarche NIRD.
 
-Contexte fourni par l’établissement :
-- Type d’établissement : {etab_type}
-- Parc / matériel : {parc}
-- Réseau / contraintes techniques : {reseau}
-- Objectif principal : {objectif}
-- Contraintes et exigences : {contraintes}
-- Autres informations : {autres}
+    Contexte :
+    - Type : {etab_type}
+    - Parc : {parc}
+    - Réseau : {reseau}
+    - Objectif : {objectif}
+    - Contraintes : {contraintes}
+    - Autres : {autres}
 
-Exigences de conception web à respecter :
-- Contenu texte prioritaire ; médias chargés uniquement à la demande
-- Pages légères (cible : < 50 KB par page, hors médias)
-- Accessibilité : navigation clavier, focus visible, contrastes, HTML sémantique
-- Compatibilité navigateurs texte (w3m / links / lynx)
-- Dépendances minimales ; aucune ressource externe obligatoire ; pas de tracking
-- Limiter les requêtes : une requête HTML principale par page ; médias uniquement après action utilisateur
+    Règles :
+    - Réponse courte (10 lignes max).
+    - Style simple, direct, phrases très courtes.
+    - Pas d'introduction longue.
+    - Pas de justification théorique.
+    - Pas de checklist.
+    - Trois jalons uniquement.
+    - Chaque jalon = 2 lignes : objectif + 3 actions clés.
+    - Si une info manque, indiquer "hypothèse minimale".
 
-Consignes de rédaction :
-- Réponds en français, ton professionnel, phrases courtes, recommandations concrètes.
-- N’invente pas de contraintes non mentionnées. Si une info manque, fais une hypothèse explicitement signalée.
+    Format obligatoire :
 
-Format obligatoire du rapport :
-1) Synthèse (5 lignes maximum)
-2) Plan d’action NIRD en 3 jalons (Mobilisation / Expérimentation / Intégration)
-   - Pour chaque jalon : objectifs, actions clés, livrables, acteurs impliqués
-3) Checklist “site web sobre & accessible” (points vérifiables, en cases à cocher)
-4) Risques & mesures de mitigation (3 à 6 items)
-5) Prochaine action recommandée (une seule, très concrète)
-""".strip()
+    1) Synthèse (3 lignes max)
+    2) Jalon 1 — Mobilisation (objectif + 3 actions)
+    3) Jalon 2 — Expérimentation (objectif + 3 actions)
+    4) Jalon 3 — Intégration (objectif + 3 actions)
+    5) Prochaine action (une seule, très courte)
+    """.strip()
 
     result = call_gemini(prompt)
 

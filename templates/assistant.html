@@ -3,7 +3,7 @@
 {% block description %}Générer un rapport personnalisé (plan NIRD + checklist) à partir de votre contexte.{% endblock %}
 
 {% block content %}
-<h1>Assistant IA — Rapport personnalisé</h1>
+<h2>Assistant IA — Rapport personnalisé</h2>
 
 <p>
   Décrivez votre contexte : vous recevrez un <strong>rapport structuré</strong> généré par un assistant IA, incluant
@@ -16,6 +16,7 @@ Le rapport contient :
 - Un plan d’action par étapes (jalons)
 - Une checklist opérationnelle
 - Des risques et recommandations
+- Navigation : Tab / Shift+Tab + Alt+1..5 (selon navigateur)
 </pre>
 
 <form method="post" action="{{ url_for('assistant_submit') }}">
